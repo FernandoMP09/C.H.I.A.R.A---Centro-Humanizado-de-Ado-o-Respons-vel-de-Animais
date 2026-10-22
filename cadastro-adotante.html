@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Cadastro adotante</title>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="imgs/chiara-logo.png" alt="Logo C.H.I.A.R.A">
+                    <span>C.H.I.A.R.A</span>
+                </a>
+            </div>
+            <!-- Navegação -->
+            <nav class="nav">
+                <a href="#comofunc">Como funciona</a>
+            </nav>
+            <!-- Botão -->
+            <a class="btn-azul" href="entrar.html">
+                Entrar
+            </a>
+        </div>
+    </header>
+    <div class="txtcadastro-adotante">
+        <h1>Cadastro do adotante</h1>
+        <p>Estas informações formam sua ficha de avaliação. Elas ajudam as instituições a indicar o animal mais
+            compatível com a sua rotina.</p>
+    </div>
+    <div class="card-form1-cadastro"><!-- Form1 -->
+        <h1>Dados pessoais</h1>
+        <p>Informações básicas de identificação e contato.</p>
+        <div class="form1-cadastro">
+            <div class="campo">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" placeholder="Seu nome">
+            </div>
+            <div class="campo">
+                <label for="CPF">CPF</label>
+                <input type="text" id="CPF" placeholder="000.000.000.00">
+            </div>
+            <div class="campo">
+                <label for="E-mail">E-mail</label>
+                <input type="email" id="email" placeholder="voce@gmail.com">
+            </div>
+            <div class="campo">
+                <label for="idade">Idade</label>
+                <input type="number" id="idade" placeholder="Ex: 30">
+            </div>
+            <div class="campo">
+                <label for="telefone">Telefone</label>
+                <input type="number" id="telefone" placeholder="(00) 00000-0000">
+            </div>
+            <div class="campo">
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" placeholder="Rua,número,bairro,cidade">
+            </div>
+        </div>
+    </div>
+    <div class="card-form1-cadastro"><!-- Form2 -->
+        <h1>Moradia e espaço</h1>
+        <p>Ajuda a entender o ambiente que o animal encontrará.</p>
+        <div class="form1-cadastro">
+            <div class="campo">
+                <label for="moradia">Tipo de Moradia</label>
+                <select id="moradia" name="moradia">
+                    <option value="">Selecione</option>
+                    <option value="casa">Casa</option>
+                    <option value="apartamento">apartamento</option>
+                    <option value="sitio">sítio ou chácara</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="espaco-disponivel">Espaço disponível</label>
+                <select id="espaco-disponivel" name="espaco-disponivel">
+                    <option value="">Selecione</option>
+                    <option value="Pequeno">Pequeno - ambiente interno</option>
+                    <option value="medio">Médio - quintal fechado</option>
+                    <option value="grande">Grande - área externa ampla </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="card-form1-cadastro">
+        <h1>Experiência com animais</h1>
+        <p>Conte um pouco da sua convivência com animais.</p>
+        <div class="form3-cadastro">
+            <div class="campo-2-linhas">
+                <label for="historico">Histórico com animais</label>
+                <input type="text" id="historico" placeholder="Já teve animais? Quantos, quais e por quanto tempo?">
+            </div>
+            <div class="campo-2-linhas">
+                <label for="experiencia">Experiência anterior</label>
+                <input type="text" id="experiencia" placeholder="Cuidados veterinários, adestramentos, resgates, etc.">
+            </div>
+        </div>
+    </div>
+    <div class="card-form1-cadastro">
+        <h1>preferências</h1>
+        <p>Assim conseguimos sugerir animais compatíveis.</p>
+        <div class="form1-cadastro">
+            <div class="campo">
+                <label for="animais-interesse">Animais de interesse</label>
+                <select id="animais-interesse" name="animais-interesse">
+                    <option value="">Selecione</option>
+                    <option value="caes">Cães</option>
+                    <option value="gatos">Gatos</option>
+                    <option value="caes-gatos">Cães e gatos</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="animais-interesse">Porte preferido</label>
+                <select id="animais-interesse" name="animais-interesse">
+                    <option value="">Selecione</option>
+                    <option value="pequeno-porte">Pequeno</option>
+                    <option value="medio-porte">Médio</option>
+                    <option value="grande-porto">Grande</option>
+                    <option value="porte-indiferente">Indiferente</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="outras-informacoes">Outras informações relevantes</label>
+                <input type="text" id="outras-informacoes" placeholder="Rotina, crianças em casa, outros animais, disponibilidade de tempo...
+                ">
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="enviar-cadastro">
+        <a class="btn-azul" href="loginadotante.html">Enviar cadastro</a>
+    </div>
+    <section class="rodape">
+        <div>
+            <h1 class="chiara">C.H.I.A.R.A</h1>
+            <img src="imgs/chiara-logo.png" alt="">
+            <p>Centro Humanizado de Adoção</p>
+            <p>Responsável de Animais.</p>
+        </div>
+        <div>
+            <h1> Contato</h1>
+            <p>contato@chiara.org.br</p>
+            <p>☎︎ (0 0) 0000-0000</p>
+            <p>🖈 Resende, RJ</p>
+        </div>
+        <div>
+            <h1> Rede sociais</h1>
+            <p>@chiara.adocao</P>
+            <p>/chiara.adocao</P>
+        </div>
+        <div>
+            <h1> Institucional</h1>
+            <p>Sobre a empresa (em breve)</p>
+            <p>Sobre o sistema (em breve)</p>
+            <p>Política de adoção (em breve)</p>
+        </div>
+    </section><!--rodape-->
+    <section class="baixorodape">
+        <p>© 2026 C.H.I.A.R.A · Protótipo demonstrativo</p>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Cadatrar animal</title>
+</head>
+
+<body class="body-instituicao">
+    <aside class="menu-lateral-instituicao">
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../imgs/chiara-logo.png" alt="Logo C.H.I.A.R.A">
+                <span>C.H.I.A.R.A</span>
+            </a>
+        </div>
+        <div class="btns-menu-lateral">
+            <a href="dashbord-instituicao.html" class="btn-branco-dashboard">
+                🌐Dashbord
+            </a>
+
+            <a href="animais-instituicao.html" class="btn-branco-dashboard">
+                🐾Animais
+            </a>
+
+            <a href="cadastrar-animal-instituicao.html" class="btn-azul-dashboard">
+                ➕Cadastrar animal
+            </a>
+
+            <a href="pedidos-instituicao.html" class="btn-branco-dashboard">
+                📋Pedidos
+            </a>
+            <a href="agendamentos-instituicao.html" class="btn-branco-dashboard">
+                📅Agendamentos
+            </a>
+            <a href="pos-adocao-instituicao.html" class="btn-branco-dashboard">
+                ❤️Pós-adoção
+            </a>
+
+            <a href="perfil-instituicao.html" class="btn-branco-dashboard">
+                🏢Perfil da instituição
+            </a>
+
+            <a href="../index.html" class="btn-branco-dashboard">
+                🚪Sair
+            </a>
+
+        </div>
+    </aside>
+    <main>
+        <div class="itens-main">
+            <div class="cabecalho-cadastrar-animais-instituicao">
+                <h1>Cadastrar animal</h1>
+                <p>Preencha as informações que aparecerão para os adotantes.</p>
+            </div>
+            <section class="card-form-cadastrar">
+                <div class="grid">
+                    <div class="campo">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome-novo-pet" placeholder="Ex: Mel">
+                    </div>
+                    <div class="campo">
+                        <label for="especie">Espécie</label>
+                        <select id="especie" name="especie">
+                            <option value="">Selecione</option>
+                            <option value="cao">Cão</option>
+                            <option value="gato">Gato</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="raca">Raça</label>
+                        <input type="text" id="raca" placeholder="Ex: SRD">
+                    </div>
+                    <div class="campo">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo" name="sexo">
+                            <option value="">Selecione</option>
+                            <option value="macho">Macho</option>
+                            <option value="femea">Fêmea</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="idade">Idade</label>
+                        <input type="text" id="idade" placeholder="Ex: 2 anos">
+                    </div>
+                    <div class="campo">
+                        <label for="porte">Porte</label>
+                        <select id="porte" name="porte">
+                            <option value="">Selecione</option>
+                            <option value="Pequeno">Pequeno</option>
+                            <option value="medio">Médio</option>
+                            <option value="grande">Grande</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label for="situacao">Situação</label>
+                        <select id="situacao" name="situacao">
+                            <option value="">Selecione</option>
+                            <option value="Pequeno">Disponível</option>
+                            <option value="medio">Em processo</option>
+                            <option value="grande">Adotado</option>
+                        </select>
+                    </div>
+                    <div class="btns-switch">
+                        <label class="opcao-switch">
+                            <input type="checkbox" name="castrado">
+                            <span class="switch"></span>
+                            Castrado
+                        </label>
+                        <label class="opcao-switch">
+                            <input type="checkbox" name="vacinado">
+                            <span class="switch"></span>
+                            Vacinado
+                        </label>
+                    </div>
+                </div>
+                <div class="campo-2-linhas-cadastro-animais">
+                    <label for="descricao-novo-animal">Descrição</label>
+                    <input type="text" id="descricao-novo-animal"
+                        placeholder="História, temperamento e cuidados especiais">
+                </div>
+                <div class="campo-fotos">
+                    <label>Fotos</label>
+
+                    <label for="fotos" class="upload-area">
+                        <span class="icone-upload">🖼</span>
+                        <span class="texto-upload">
+                            Arraste as fotos ou clique para enviar
+                        </span>
+                        <small>JPG ou PNG até 5 MB cada</small>
+                    </label>
+                    <input type="file" id="fotos" name="fotos[]" accept=".jpg,.jpeg,.png" multiple hidden>
+                </div>
+            </section>
+            <div class="btns-cadastrar-animal">
+                <a class="btn-branco" href="#">Cancelar</a>
+                <a class="btn-azul" href="#">Salvar animal</a>
+            </div>
+        </div>
+</body>
