@@ -1,4 +1,3 @@
-
 const http = require("http");
 const conexao = require("./db");
 const bcrypt = require("bcryptjs");
@@ -52,10 +51,7 @@ function validarCPF(cpf) {
   resto = soma % 11;
   let segundoDigito = resto < 2 ? 0 : 11 - resto;
 
-  return (
-    primeiroDigito === Number(cpf[9]) &&
-    segundoDigito === Number(cpf[10])
-  );
+  return primeiroDigito === Number(cpf[9]) && segundoDigito === Number(cpf[10]);
 }
 
 // ==========================================
@@ -239,7 +235,6 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA: LOGIN DE ADOTANTES
   // ==========================================
-
   else if (req.method === "POST" && req.url === "/login") {
     let corpo = "";
 
@@ -327,11 +322,104 @@ const servidor = http.createServer((req, res) => {
 
     return;
   }
+  // ==========================================
+  // ROTA: LOGIN DAS INSTITUIÇÕES
+  // ==========================================
+  else if (req.method === "POST" && req.url === "/login-instituicao") {
+    let corpo = "";
 
+    req.on("data", (pedaco) => {
+      corpo += pedaco;
+    });
+
+    req.on("end", () => {
+      try {
+        const dados = JSON.parse(corpo);
+
+        if (
+          typeof dados.email !== "string" ||
+          typeof dados.senha !== "string" ||
+          !dados.email.trim() ||
+          !dados.senha
+        ) {
+          responderJSON(res, 400, {
+            mensagem: "Informe o e-mail e a senha!",
+          });
+          return;
+        }
+
+        const email = dados.email.trim().toLowerCase();
+
+        const sql = "SELECT * FROM instituicoes WHERE email = ?";
+
+        conexao.query(sql, [email], (erro, resultados) => {
+          if (erro) {
+            console.error("Erro ao consultar instituição:", erro);
+
+            responderJSON(res, 500, {
+              mensagem: "Erro interno ao realizar login!",
+            });
+            return;
+          }
+
+          if (resultados.length === 0) {
+            responderJSON(res, 401, {
+              mensagem: "E-mail ou senha incorretos!",
+            });
+            return;
+          }
+
+          const instituicao = resultados[0];
+
+          if (instituicao.status !== "ativo") {
+            responderJSON(res, 403, {
+              mensagem: "Esta instituição não está ativa!",
+            });
+            return;
+          }
+
+          bcrypt.compare(
+            dados.senha,
+            instituicao.senha,
+            (erro, senhaCorreta) => {
+              if (erro) {
+                console.error("Erro ao verificar senha:", erro);
+
+                responderJSON(res, 500, {
+                  mensagem: "Erro ao verificar a senha!",
+                });
+                return;
+              }
+
+              if (!senhaCorreta) {
+                responderJSON(res, 401, {
+                  mensagem: "E-mail ou senha incorretos!",
+                });
+                return;
+              }
+
+              responderJSON(res, 200, {
+                mensagem: "Login institucional realizado com sucesso!",
+                id: instituicao.id,
+                nome: instituicao.nome,
+              });
+            },
+          );
+        });
+      } catch (erro) {
+        console.error("Erro ao interpretar JSON:", erro);
+
+        responderJSON(res, 400, {
+          mensagem: "Os dados enviados são inválidos!",
+        });
+      }
+    });
+
+    return;
+  }
   // ==========================================
   // ROTA: CONSULTAR ANIMAIS DISPONÍVEIS
   // ==========================================
-
   else if (req.method === "GET" && req.url === "/animais") {
     conexao.query(
       "SELECT * FROM animais WHERE status = ?",
@@ -347,7 +435,7 @@ const servidor = http.createServer((req, res) => {
         }
 
         responderJSON(res, 200, resultados);
-      }
+      },
     );
 
     return;
@@ -356,7 +444,6 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA: INSTITUIÇÕES
   // ==========================================
-
   else if (req.method === "GET" && req.url === "/instituicoes") {
     responderJSON(res, 200, {
       mensagem: "Lista de instituições cadastradas",
@@ -368,7 +455,6 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA INICIAL
   // ==========================================
-
   else if (req.method === "GET" && req.url === "/") {
     res.statusCode = 200;
     res.end("Bem-vindo ao C.HI.A.R.A!");
@@ -378,7 +464,6 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA NÃO ENCONTRADA
   // ==========================================
-
   else {
     responderJSON(res, 404, {
       mensagem: "Página não encontrada!",
