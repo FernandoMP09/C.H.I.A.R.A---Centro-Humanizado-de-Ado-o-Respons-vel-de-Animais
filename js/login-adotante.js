@@ -1,14 +1,23 @@
+
 console.log("JavaScript do login C.H.I.A.R.A conectado!");
+
+// Endereço do backend publicado no Render
+const API_URL = "https://chiara-backend-3ym1.onrender.com";
+
 const formulario = document.getElementById("form-login");
+
 formulario.addEventListener("submit", function (event) {
   event.preventDefault();
+
   const email = document.getElementById("email").value;
   const senha = document.getElementById("senha").value;
+
   const dadosLogin = {
     email: email,
     senha: senha,
   };
-  fetch("http://localhost:3000/login", {
+
+  fetch(`${API_URL}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -20,6 +29,7 @@ formulario.addEventListener("submit", function (event) {
     })
     .then((dados) => {
       console.log("Dados recebidos no login:", dados);
+
       alert(dados.mensagem);
 
       if (dados.mensagem === "Login realizado com sucesso!") {
@@ -28,8 +38,14 @@ formulario.addEventListener("submit", function (event) {
 
         window.location.href = "adotantes/inicio-adotante.html";
       }
+    })
+    .catch((erro) => {
+      console.error("Erro ao conectar ao servidor:", erro);
+
+      alert("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
     });
 });
+
 // Verifica se o usuário acabou de realizar um cadastro
 const cadastroConcluido = sessionStorage.getItem("cadastroConcluido");
 

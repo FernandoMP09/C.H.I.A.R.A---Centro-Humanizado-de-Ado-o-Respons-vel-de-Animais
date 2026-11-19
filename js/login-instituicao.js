@@ -1,4 +1,8 @@
+
 console.log("JavaScript do login institucional conectado!");
+
+const API_URL = "https://chiara-backend-3ym1.onrender.com";
+
 const form = document.getElementById("form-login-instituicao");
 
 console.log(form);
@@ -14,7 +18,7 @@ formulario.addEventListener("submit", function (event) {
 
     const dadosLogin = { email, senha };
 
-    fetch("http://localhost:3000/login-instituicao", {
+    fetch(`${API_URL}/login-instituicao`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -1,4 +1,8 @@
-console.log("JavaScript do cadastro C.H.I.A.R.A conectado!");
+
+console.log("JavaScript do cadastro C.HI.A.R.A conectado!");
+
+// Endereço do backend publicado no Render
+const API_URL = "https://chiara-backend-3ym1.onrender.com";
 
 const formulario = document.getElementById("form-cadastro");
 
@@ -49,7 +53,7 @@ formulario.addEventListener("submit", function (event) {
   };
 
   // Envio dos dados para o servidor
-  fetch("http://localhost:3000/adotantes", {
+  fetch(`${API_URL}/adotantes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -75,7 +79,7 @@ formulario.addEventListener("submit", function (event) {
       console.error("Erro ao conectar ao servidor:", erro);
 
       alert(
-        "Não foi possível conectar ao servidor. Tente novamente mais tarde.",
+        "Não foi possível conectar ao servidor. Tente novamente mais tarde."
       );
     });
 });

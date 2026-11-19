@@ -1,3 +1,4 @@
+
 const http = require("http");
 const conexao = require("./db");
 const bcrypt = require("bcryptjs");
@@ -6,7 +7,11 @@ const bcrypt = require("bcryptjs");
 // CONFIGURAÇÕES
 // ==========================================
 
-const origemPermitida = "http://127.0.0.1:5500";
+const origensPermitidas = new Set([
+  "https://chiara-adocao.netlify.app",
+  "http://127.0.0.1:5500",
+  "http://localhost:5500",
+]);
 
 function responderJSON(res, statusCode, dados) {
   res.statusCode = statusCode;
@@ -51,7 +56,8 @@ function validarCPF(cpf) {
   resto = soma % 11;
   let segundoDigito = resto < 2 ? 0 : 11 - resto;
 
-  return primeiroDigito === Number(cpf[9]) && segundoDigito === Number(cpf[10]);
+  return primeiroDigito === Number(cpf[9]) &&
+    segundoDigito === Number(cpf[10]);
 }
 
 // ==========================================
@@ -62,14 +68,34 @@ const servidor = http.createServer((req, res) => {
   console.log(req.method, req.url);
 
   // Configuração CORS
-  res.setHeader("Access-Control-Allow-Origin", origemPermitida);
+  const origem = req.headers.origin;
+
+  if (origem && origensPermitidas.has(origem)) {
+    res.setHeader("Access-Control-Allow-Origin", origem);
+    res.setHeader("Vary", "Origin");
+  }
+
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   // Tratamento de requisições OPTIONS
   if (req.method === "OPTIONS") {
+    if (origem && !origensPermitidas.has(origem)) {
+      res.statusCode = 403;
+      res.end();
+      return;
+    }
+
     res.statusCode = 204;
     res.end();
+    return;
+  }
+
+  // Bloqueia origens não autorizadas
+  if (origem && !origensPermitidas.has(origem)) {
+    responderJSON(res, 403, {
+      mensagem: "Origem não autorizada!",
+    });
     return;
   }
 
@@ -123,7 +149,7 @@ const servidor = http.createServer((req, res) => {
           return;
         }
 
-        // Validação do tipo de e-mail
+        // Validação do e-mail
         if (typeof dados.email !== "string") {
           responderJSON(res, 400, {
             mensagem: "Informe um e-mail válido!",
@@ -235,6 +261,7 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA: LOGIN DE ADOTANTES
   // ==========================================
+
   else if (req.method === "POST" && req.url === "/login") {
     let corpo = "";
 
@@ -322,9 +349,11 @@ const servidor = http.createServer((req, res) => {
 
     return;
   }
+
   // ==========================================
   // ROTA: LOGIN DAS INSTITUIÇÕES
   // ==========================================
+
   else if (req.method === "POST" && req.url === "/login-instituicao") {
     let corpo = "";
 
@@ -403,7 +432,7 @@ const servidor = http.createServer((req, res) => {
                 id: instituicao.id,
                 nome: instituicao.nome,
               });
-            },
+            }
           );
         });
       } catch (erro) {
@@ -417,9 +446,11 @@ const servidor = http.createServer((req, res) => {
 
     return;
   }
+
   // ==========================================
   // ROTA: CONSULTAR ANIMAIS DISPONÍVEIS
   // ==========================================
+
   else if (req.method === "GET" && req.url === "/animais") {
     conexao.query(
       "SELECT * FROM animais WHERE status = ?",
@@ -435,7 +466,7 @@ const servidor = http.createServer((req, res) => {
         }
 
         responderJSON(res, 200, resultados);
-      },
+      }
     );
 
     return;
@@ -444,6 +475,7 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA: INSTITUIÇÕES
   // ==========================================
+
   else if (req.method === "GET" && req.url === "/instituicoes") {
     responderJSON(res, 200, {
       mensagem: "Lista de instituições cadastradas",
@@ -455,6 +487,7 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA INICIAL
   // ==========================================
+
   else if (req.method === "GET" && req.url === "/") {
     res.statusCode = 200;
     res.end("Bem-vindo ao C.HI.A.R.A!");
@@ -464,6 +497,7 @@ const servidor = http.createServer((req, res) => {
   // ==========================================
   // ROTA NÃO ENCONTRADA
   // ==========================================
+
   else {
     responderJSON(res, 404, {
       mensagem: "Página não encontrada!",
