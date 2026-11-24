@@ -2,7 +2,7 @@
 console.log("JavaScript do login C.H.I.A.R.A conectado!");
 
 // Endereço do backend publicado no Render
-const API_URL = "https://chiara-backend-3ym1.onrender.com";
+const API_URL = "https://chiara-backend-3ywl.onrender.com";
 
 const formulario = document.getElementById("form-login");
 

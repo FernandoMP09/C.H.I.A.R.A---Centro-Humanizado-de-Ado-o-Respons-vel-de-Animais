@@ -1,7 +1,7 @@
 
 console.log("JavaScript do login institucional conectado!");
 
-const API_URL = "https://chiara-backend-3ym1.onrender.com";
+const API_URL = "https://chiara-backend-3ywl.onrender.com";
 
 const form = document.getElementById("form-login-instituicao");
 
