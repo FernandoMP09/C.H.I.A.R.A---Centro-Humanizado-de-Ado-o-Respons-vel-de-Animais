@@ -54,7 +54,6 @@ if (cadastroConcluido === "true") {
 
   popup.hidden = false;
 
-  // Remove a informação para não mostrar novamente
   sessionStorage.removeItem("cadastroConcluido");
 }
 

@@ -56,88 +56,96 @@
                 <h1>Cadastrar animal</h1>
                 <p>Preencha as informações que aparecerão para os adotantes.</p>
             </div>
-            <section class="card-form-cadastrar">
-                <div class="grid">
-                    <div class="campo">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome-novo-pet" placeholder="Ex: Mel">
+            <form id="form-cadastrar-animal">
+                <section class="card-form-cadastrar">
+                    <div class="grid">
+                        <div class="campo">
+                            <label for="nome-novo-pet">Nome</label>
+                            <input type="text" id="nome-novo-pet" placeholder="Ex: Mel">
+                        </div>
+                        <div class="campo">
+                            <label for="especie">Espécie</label>
+                            <select id="especie" name="especie">
+                                <option value="">Selecione</option>
+                                <option value="cao">Cão</option>
+                                <option value="gato">Gato</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label for="raca">Raça</label>
+                            <input type="text" id="raca" placeholder="Ex: SRD">
+                        </div>
+                        <div class="campo">
+                            <label for="sexo">Sexo</label>
+                            <select id="sexo" name="sexo">
+                                <option value="">Selecione</option>
+                                <option value="macho">Macho</option>
+                                <option value="femea">Fêmea</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label for="idade">Idade</label>
+                            <input type="number" id="idade" placeholder="Ex: 2" min="0">
+                        </div>
+                        <div class="campo">
+                            <label for="porte">Porte</label>
+                            <select id="porte" name="porte">
+                                <option value="">Selecione</option>
+                                <option value="pequeno">Pequeno</option>
+                                <option value="medio">Médio</option>
+                                <option value="grande">Grande</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label for="situacao">Situação</label>
+                            <select id="situacao" name="situacao">
+                                <option value="">Selecione</option>
+                                <option value="disponivel">Disponível</option>
+                                <option value="reservado">Em processo</option>
+                                <option value="adotado">Adotado</option>
+                            </select>
+                        </div>
+                        <div class="btns-switch">
+                            <label class="opcao-switch">
+                                <input type="checkbox" name="castrado">
+                                <span class="switch"></span>
+                                Castrado
+                            </label>
+                            <label class="opcao-switch">
+                                <input type="checkbox" name="vacinado">
+                                <span class="switch"></span>
+                                Vacinado
+                            </label>
+                        </div>
                     </div>
-                    <div class="campo">
-                        <label for="especie">Espécie</label>
-                        <select id="especie" name="especie">
-                            <option value="">Selecione</option>
-                            <option value="cao">Cão</option>
-                            <option value="gato">Gato</option>
-                        </select>
+                    <div class="campo-2-linhas-cadastro-animais">
+                        <label for="descricao-novo-animal">Descrição</label>
+                        <input type="text" id="descricao-novo-animal"
+                            placeholder="História, temperamento e cuidados especiais">
                     </div>
-                    <div class="campo">
-                        <label for="raca">Raça</label>
-                        <input type="text" id="raca" placeholder="Ex: SRD">
-                    </div>
-                    <div class="campo">
-                        <label for="sexo">Sexo</label>
-                        <select id="sexo" name="sexo">
-                            <option value="">Selecione</option>
-                            <option value="macho">Macho</option>
-                            <option value="femea">Fêmea</option>
-                        </select>
-                    </div>
-                    <div class="campo">
-                        <label for="idade">Idade</label>
-                        <input type="text" id="idade" placeholder="Ex: 2 anos">
-                    </div>
-                    <div class="campo">
-                        <label for="porte">Porte</label>
-                        <select id="porte" name="porte">
-                            <option value="">Selecione</option>
-                            <option value="Pequeno">Pequeno</option>
-                            <option value="medio">Médio</option>
-                            <option value="grande">Grande</option>
-                        </select>
-                    </div>
-                    <div class="campo">
-                        <label for="situacao">Situação</label>
-                        <select id="situacao" name="situacao">
-                            <option value="">Selecione</option>
-                            <option value="Pequeno">Disponível</option>
-                            <option value="medio">Em processo</option>
-                            <option value="grande">Adotado</option>
-                        </select>
-                    </div>
-                    <div class="btns-switch">
-                        <label class="opcao-switch">
-                            <input type="checkbox" name="castrado">
-                            <span class="switch"></span>
-                            Castrado
-                        </label>
-                        <label class="opcao-switch">
-                            <input type="checkbox" name="vacinado">
-                            <span class="switch"></span>
-                            Vacinado
-                        </label>
-                    </div>
-                </div>
-                <div class="campo-2-linhas-cadastro-animais">
-                    <label for="descricao-novo-animal">Descrição</label>
-                    <input type="text" id="descricao-novo-animal"
-                        placeholder="História, temperamento e cuidados especiais">
-                </div>
-                <div class="campo-fotos">
-                    <label>Fotos</label>
+                    <div class="campo-fotos">
+                        <label>Fotos</label>
 
-                    <label for="fotos" class="upload-area">
-                        <span class="icone-upload">🖼</span>
-                        <span class="texto-upload">
-                            Arraste as fotos ou clique para enviar
-                        </span>
-                        <small>JPG ou PNG até 5 MB cada</small>
-                    </label>
-                    <input type="file" id="fotos" name="fotos[]" accept=".jpg,.jpeg,.png" multiple hidden>
+                        <label for="fotos" class="upload-area">
+                            <span class="icone-upload">🖼</span>
+                            <span class="texto-upload">
+                                Arraste as fotos ou clique para enviar
+                            </span>
+                            <small>JPG ou PNG até 5 MB cada</small>
+                        </label>
+                        <input type="file" id="fotos" name="fotos" accept=".jpg,.jpeg,.png" hidden>
+                    </div>
+                </section>
+                <div class="btns-cadastrar-animal">
+                    <a class="btn-branco" href="#">Cancelar</a>
+                    <button type="submit" class="btn-azul">
+                        Salvar animal
+                    </button>
                 </div>
-            </section>
-            <div class="btns-cadastrar-animal">
-                <a class="btn-branco" href="#">Cancelar</a>
-                <a class="btn-azul" href="#">Salvar animal</a>
-            </div>
+            </form>
         </div>
+        <script src="../js/cadastrar-animal.js"></script>
+    </main>
 </body>
+
+</html>
